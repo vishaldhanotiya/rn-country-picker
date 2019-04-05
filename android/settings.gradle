@@ -1,0 +1,3 @@
+rootProject.name = 'RNCountryPicker'
+
+include ':app'
