@@ -1,7 +1,7 @@
 {
-  "name": "RNCountryPicker",
+  "name": "rn-country-picker",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
@@ -21,5 +21,22 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "description": "React native country picker",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishaldhanotiya/rn-country-picker.git"
+  },
+  "keywords": [
+    "rn-country-picker",
+    "country-picker",
+    "react-native-country-picker"
+  ],
+  "author": "vishaldhanotiya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vishaldhanotiya/rn-country-picker/issues"
+  },
+  "homepage": "https://github.com/vishaldhanotiya/rn-country-picker#readme"
 }
