@@ -10,7 +10,7 @@ import React, { Component } from "react";
 import { Platform, I18nManager, StyleSheet, Text, View } from "react-native";
 import CountryPicker from "./src/CountryPicker/CountryPicker";
 import CountryJSON from "./src/CountryPicker/countries.json";
-import DeviceInfo from "react-native-device-info";
+//import DeviceInfo from "react-native-device-info";
 
 export default class App extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class App extends Component {
       mCountryCode: "91"
     };
     let userLocaleCountryCode = "";
-    userLocaleCountryCode = DeviceInfo.getDeviceCountry();
+   // userLocaleCountryCode = DeviceInfo.getDeviceCountry();
 
     try {
       if (userLocaleCountryCode) {
