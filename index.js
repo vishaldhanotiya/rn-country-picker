@@ -209,6 +209,7 @@ export default class CountryPicker extends Component {
             {this.state.hideSearchBar ? null : (
               <TextInput
                 style={this.props.searchBarStyle}
+                underlineColorAndroid={'transparent'}
                 onChangeText={text => this._searchFilterFunction(text)}
                 placeholder={this.props.searchBarPlaceHolder}
                 keyboardType="default"
