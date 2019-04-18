@@ -153,9 +153,8 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 10
   }
-});```
-
-
+});
+```
 
 ## Properties
 
