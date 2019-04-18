@@ -1,6 +1,6 @@
 {
   "name": "rn-country-picker",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -22,7 +22,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vishaldhanotiya/rn-country-picker.git"
+    "url": "https://github.com/vishaldhanotiya/rn-country-picker.git"
   },
   "keywords": [
     "rn-country-picker",
