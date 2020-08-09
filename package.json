@@ -1,12 +1,11 @@
 {
   "name": "rn-country-picker",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": false,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
-  
   "devDependencies": {
     "@babel/core": "7.4.3",
     "@babel/runtime": "7.4.3",
