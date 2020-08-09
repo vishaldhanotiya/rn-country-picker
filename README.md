@@ -13,12 +13,12 @@
 
 ## Features
 
-1. Light weight country picker npm 
-2. Cross platform compatibility android and ios both
-3. Filter country using search bar
-4. Dynamically change dropdown, serach and back button images image
-5. Customize serach bar style and text colors 
-6. Change animation(Slide, fade, none)
+1. Light weight country picker npm.
+2. Cross platform compatibility android and ios both.
+3. Search country using country code or country code.
+4. Dynamically change dropdown, search and back button images.
+5. Customizable search bar style and text colors.
+6. Change animation(Slide, fade, none).
 
 ## Installation
 
@@ -26,71 +26,44 @@
 
 ## Usage
 
-```import React, { Component } from "react";
-import { Platform, I18nManager, StyleSheet, Text, View } from "react-native";
-import CountryPicker from "./src/CountryPicker/CountryPicker";
-import CountryJSON from "./src/CountryPicker/countries.json";
-import DeviceInfo from "react-native-device-info";
-
+```import React, {Component} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import CountryPicker from 'rn-country-picker';
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mCountryCode: "91"
+      mCountryCode: '91',
     };
-    let userLocaleCountryCode = "";
-    userLocaleCountryCode = DeviceInfo.getDeviceCountry();
-
-    try {
-      if (userLocaleCountryCode) {
-        const newData = CountryJSON.filter(function(item) {
-          const itemData = item.name.common.toUpperCase();
-          const textData = userLocaleCountryCode.toUpperCase();
-          return itemData.startsWith(textData);
-        });
-        if (newData.length > 0) {
-          this.state.mCountryCode = newData[0].callingCode;
-        } else {
-          this.setState({ mCountryCode: "91" });
-        }
-      } else {
-        this.setState({ mCountryCode: "91" });
-      }
-    } catch (e) {
-      console.error(e.message);
-    }
   }
 
-  _selectedValue = index => {
-    this.setState({ mCountryCode: index });
+  _selectedValue = (index) => {
+    this.setState({mCountryCode: index});
   };
-
 
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.titleText}>React Native Country Picker</Text>
 
-      <Text style={{color:'#000',fontSize:25,marginBottom:25,fontWeight:'bold'}}>React Native Country Picker</Text>
-       
-       <CountryPicker
+        <CountryPicker
           disable={false}
           animationType={'slide'}
           containerStyle={styles.pickerStyle}
           pickerTitleStyle={styles.pickerTitleStyle}
-          dropDownImage={require("./res/ic_drop_down.png")}
+          dropDownImage={require('./res/ic_drop_down.png')}
           selectedCountryTextStyle={styles.selectedCountryTextStyle}
           countryNameTextStyle={styles.countryNameTextStyle}
-          pickerTitle={"Country Picker"}
-          searchBarPlaceHolder={"Search......"}
+          pickerTitle={'Country Picker'}
+          searchBarPlaceHolder={'Search......'}
           hideCountryFlag={false}
           hideCountryCode={false}
           searchBarStyle={styles.searchBarStyle}
-          backButtonImage={require("./res/ic_back_black.png")}
-          searchButtonImage={require("./res/ic_search.png")}
+          backButtonImage={require('./res/ic_back_black.png')}
+          searchButtonImage={require('./res/ic_search.png')}
           countryCode={this.state.mCountryCode}
           selectedValue={this._selectedValue}
         />
-
       </View>
     );
   }
@@ -99,60 +72,56 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  titleText: {
+    color: '#000',
+    fontSize: 25,
+    marginBottom: 25,
+    fontWeight: 'bold',
   },
   pickerTitleStyle: {
-    justifyContent: "center",
-    flexDirection: "row",
-    alignItems: "center",
-    textAlign: "center",
-    alignSelf: "center",
-    fontWeight: "bold",
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    fontWeight: 'bold',
     flex: 1,
-    marginTop: 5,
-    fontSize: 15,
-    color: "#000"
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#000',
   },
   pickerStyle: {
     height: 60,
     width: 250,
-    marginBottom:10,
-    justifyContent: "center",
+    marginBottom: 10,
+    justifyContent: 'center',
     padding: 10,
     borderWidth: 2,
-    borderColor: "#303030",
-    backgroundColor: "white"
+    borderColor: '#303030',
+    backgroundColor: 'white',
   },
   selectedCountryTextStyle: {
     paddingLeft: 5,
     paddingRight: 5,
-    color: "#000",
-    textAlign: "right"
+    color: '#000',
+    textAlign: 'right',
   },
 
   countryNameTextStyle: {
     paddingLeft: 10,
-    color: "#000",
-    textAlign: "right"
+    color: '#000',
+    textAlign: 'right',
   },
 
   searchBarStyle: {
     flex: 1,
-    borderRadius: 50,
-    borderWidth: 4,
-
-    borderColor: "#D3D3D3",
-    justifyContent: "center",
-    flexDirection: "row",
-    marginTop: 10,
+    justifyContent: 'center',
+    flexDirection: 'row',
     marginLeft: 8,
-    marginBottom: 5,
-    marginRight: 12,
-    paddingLeft: 20,
-    paddingRight: 10
-  }
+    marginRight: 10,
+  },
 });
 ```
 
@@ -177,8 +146,3 @@ const styles = StyleSheet.create({
 |  hideCountryCode         |  -        |   bool     |  hide country code from component only show flag      |   Optional         |
 |  hideCountryFlag         |  -        |   bool     |  hide country flag from component and List only show code  | Optional      |
 |  disable                 |  -        |   bool     |  Disable picker if you show default value and no need to change| Optional  |
-
-
-
-
-
