@@ -3,11 +3,11 @@
 ## Country picker with Country Code and Flag for react native support both platform IOs and android
 <p align="left">
   
-<img  width="280" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/Screenshot_20190417-135544_RNCountryPicker.jpg?alt=media&token=3ed14d3c-700f-4b66-ab81-18972ddb4d77">
+<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/Screenshot_20190417-135544_RNCountryPicker.jpg?alt=media&token=3ed14d3c-700f-4b66-ab81-18972ddb4d77">
   
-  <img  width="280" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/Screenshot_20200810-110509_RNCountryPicker.jpg?alt=media&token=6564b662-12c5-4761-8366-c93f20658052">
+  <img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/Screenshot_20200810-110509_RNCountryPicker.jpg?alt=media&token=6564b662-12c5-4761-8366-c93f20658052">
 
-<img  width="280" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/RNCountryPicker.gif?alt=media&token=fb0d9d7f-ff15-48b1-b8f4-4dace236b41a">
+<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/RNCountryPicker.gif?alt=media&token=fb0d9d7f-ff15-48b1-b8f4-4dace236b41a">
 
 </p>
 
