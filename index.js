@@ -1,8 +1,7 @@
 /**
  * @format
- */
-import PropTypes from "prop-types";
-import React, { Component } from "react";
+ */import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 import {
   FlatList,
   I18nManager,
@@ -13,49 +12,56 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
-} from "react-native";
-import CountryJSON from "./src/CountryPicker/countries.json";
+  View,
+} from 'react-native';
+import CountryJSON from './src/CountryPicker/countries.json';
 
-const HEADER_HEIGHT = Platform.OS === "ios" ? 64 : 56;
-const PADDING_TOP = Platform.OS === "ios" ? 20 : 0;
+const HEADER_HEIGHT = Platform.OS === 'ios' ? 64 : 56;
+const PADDING_TOP = Platform.OS === 'ios' ? 20 : 0;
 
 export default class CountryPicker extends Component {
   constructor() {
     super();
     this.state = {
-      searchText: "",
-      selectedCountryFlag: "",
+      searchText: '',
+      selectedCountryFlag: '',
       hidePickerTitle: false,
       hideSearchBar: true,
       arrayData: CountryJSON,
       modalVisible: false,
-      selectedFlag: false
+      selectedFlag: false,
     };
   }
 
   _searchFilterFunction(searchText) {
-    const newData = CountryJSON.filter(function(item) {
-      const itemData = item.name.common.toUpperCase();
-      const textData = searchText.toUpperCase();
-      return itemData.startsWith(textData);
-    });
+    if (/^-{0,1}\d+$/.test(searchText)) {
+      var newData = CountryJSON.filter(function (item) {
+        const itemData = item.callingCode;
+        const textData = searchText;
+        return itemData.startsWith(textData);
+      });
+    } else {
+      var newData = CountryJSON.filter(function (item) {
+        const itemData = item.name.common.toUpperCase();
+        const textData = searchText.toUpperCase();
+        return itemData.startsWith(textData);
+      });
+    }
     this.setState({
-      arrayData: [...newData]
+      arrayData: [...newData],
     });
   }
 
   _listItemClickListener(item) {
-    this.setState({ modalVisible: false });
-    this.props.selectedValue(item.callingCode);
     this.setState({
+      modalVisible: false,
       selectedFlag: true,
       selectedCountryCode: item.callingCode,
       selectedCountryFlag: item.flag,
       selectedCountryName: item.name.common,
-
-      arrayData: CountryJSON
+      arrayData: CountryJSON,
     });
+    this.props.selectedValue(item.callingCode);
   }
 
   static _selectDefaultCountry(
@@ -63,9 +69,9 @@ export default class CountryPicker extends Component {
     dropDownImage,
     hideCountryFlag,
     hideCountryCode,
-    selectedCountryTextStyle
+    selectedCountryTextStyle,
   ) {
-    const newData = CountryJSON.filter(function(item) {
+    const newData = CountryJSON.filter(function (item) {
       const itemData = item.callingCode;
       const textData = defaultText;
       return itemData === textData;
@@ -75,12 +81,12 @@ export default class CountryPicker extends Component {
         <View style={styles.selectedCountryContainer}>
           {hideCountryFlag ? null : (
             <Image
-              source={{ uri: newData[0].flag }}
+              source={{uri: newData[0].flag}}
               style={styles.countryFlagContainer}
             />
           )}
           {hideCountryCode ? null : (
-            <Text style={selectedCountryTextStyle}>{"+" + defaultText}</Text>
+            <Text style={selectedCountryTextStyle}>{'+' + defaultText}</Text>
           )}
 
           <Image source={dropDownImage} style={styles.dropDownImageStyle} />
@@ -96,36 +102,15 @@ export default class CountryPicker extends Component {
           <View style={styles.listViewRowContainer}>
             {this.props.hideCountryFlag ? null : (
               <Image
-                source={{ uri: item.flag }}
+                source={{uri: item.flag}}
                 style={styles.countryFlagContainer}
               />
             )}
             <Text style={this.props.countryNameTextStyle}>
-              {item.name.common + " (+" + item.callingCode + ")"}
+              {item.name.common + ' (+' + item.callingCode + ')'}
             </Text>
           </View>
-
-          {this.props.hideCountryFlag ? (
-            <View
-              style={{
-                marginLeft: 10,
-                marginRight: 10,
-                backgroundColor: "#D3D3D3",
-                width: "95%",
-                height: 0.8
-              }}
-            />
-          ) : (
-            <View
-              style={{
-               marginLeft: 12,
-                marginRight: 10,
-                backgroundColor: "#D3D3D3",
-                width: "95%",
-                height: 0.8
-              }}
-            />
-          )}
+          <View style={styles.divider} />
         </TouchableOpacity>
       </View>
     );
@@ -137,21 +122,20 @@ export default class CountryPicker extends Component {
         {this.state.selectedFlag ? (
           <TouchableOpacity
             disabled={this.props.disable}
-            onPress={() => this.setState({ modalVisible: true })}
-            activeOpacity={0.7}
-          >
+            onPress={() => this.setState({modalVisible: true})}
+            activeOpacity={0.7}>
             <View style={styles.selectedCountryContainer}>
               {this.props.hideCountryFlag ? null : (
                 <Image
                   source={{
-                    uri: this.state.selectedCountryFlag
+                    uri: this.state.selectedCountryFlag,
                   }}
                   style={styles.countryFlagContainer}
                 />
               )}
               {this.props.hideCountryCode ? null : (
                 <Text style={this.props.selectedCountryTextStyle}>
-                  {"+" + this.state.selectedCountryCode}
+                  {'+' + this.state.selectedCountryCode}
                 </Text>
               )}
 
@@ -164,37 +148,34 @@ export default class CountryPicker extends Component {
         ) : (
           <TouchableOpacity
             disabled={this.props.disable}
-            onPress={() => this.setState({ modalVisible: true })}
-            activeOpacity={0.7}
-          >
+            onPress={() => this.setState({modalVisible: true})}
+            activeOpacity={0.7}>
             <View style={styles.selectedCountryContainer}>
               {CountryPicker._selectDefaultCountry(
                 this.props.countryCode,
                 this.props.dropDownImage,
                 this.props.hideCountryFlag,
                 this.props.hideCountryCode,
-                this.props.selectedCountryTextStyle
+                this.props.selectedCountryTextStyle,
               )}
             </View>
           </TouchableOpacity>
         )}
 
         <Modal
-        animationType={this.props.animationType}
+          animationType={this.props.animationType}
           visible={this.state.modalVisible}
-          onRequestClose={() => this.setState({ modalVisible: false })}
-        >
+          onRequestClose={() => this.setState({modalVisible: false})}>
           <View elevation={10} style={styles.searchBarContainer}>
             <TouchableOpacity
               disabled={this.props.disable}
               activeOpacity={0.5}
               style={styles.backBtnContainer}
               onPress={() =>
-                this.setState({ arrayData: CountryJSON, modalVisible: false })
-              }
-            >
+                this.setState({arrayData: CountryJSON, modalVisible: false})
+              }>
               <Image
-                resizeMode="contain"
+                resizeMode="center"
                 style={styles.backImageStyle}
                 source={this.props.backButtonImage}
               />
@@ -209,11 +190,10 @@ export default class CountryPicker extends Component {
             {this.state.hideSearchBar ? null : (
               <TextInput
                 style={this.props.searchBarStyle}
-                underlineColorAndroid={'transparent'}
-                onChangeText={text => this._searchFilterFunction(text)}
+                onChangeText={(text) => this._searchFilterFunction(text)}
                 placeholder={this.props.searchBarPlaceHolder}
                 keyboardType="default"
-                returnKeyType={"done"}
+                returnKeyType={'done'}
                 blurOnSubmit={true}
               />
             )}
@@ -225,12 +205,11 @@ export default class CountryPicker extends Component {
               onPress={() =>
                 this.setState({
                   hideSearchBar: !this.state.hideSearchBar,
-                  hidePickerTitle: !this.state.hidePickerTitle
+                  hidePickerTitle: !this.state.hidePickerTitle,
                 })
-              }
-            >
+              }>
               <Image
-                resizeMode="contain"
+                resizeMode="center"
                 style={styles.searchImageStyle}
                 source={this.props.searchButtonImage}
               />
@@ -239,7 +218,7 @@ export default class CountryPicker extends Component {
 
           <FlatList
             overScrollMode="never"
-            style={{paddingTop:10}}
+            style={{paddingTop: 10}}
             keyboardShouldPersistTaps={'handled'}
             showsVerticalScrollIndicator={false}
             initialNumToRender={50}
@@ -247,7 +226,7 @@ export default class CountryPicker extends Component {
             data={this.state.arrayData}
             numColumns={1}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => this._renderListItems(item, index)}
+            renderItem={({item, index}) => this._renderListItems(item, index)}
           />
         </Modal>
       </View>
@@ -255,69 +234,11 @@ export default class CountryPicker extends Component {
   }
 }
 
-CountryPicker.defaultProps = {
-  disable: false,
-  hideCountryFlag: false,
-  hideCountryCode:false,
-  dropDownImage: require("./res/ic_drop_down.png"),
-  backButtonImage: require("./res/ic_back_black.png"),
-  searchButtonImage: require("./res/ic_search.png"),
-
-  containerStyle:{
-    height: 60,
-    width: 250,
-    marginBottom:10,
-    justifyContent: "center",
-    padding: 10,
-    borderWidth: 2,
-    borderColor: "#303030",
-    backgroundColor: "white"
-  },
-  searchBarStyle: {
-    flex: 1,
-    borderRadius: 50,
-    borderWidth: 4,
-    borderColor: "#D3D3D3",
-    justifyContent: "center",
-    flexDirection: "row",
-    marginTop: 10,
-    marginLeft: 8,
-    marginBottom: 5,
-    marginRight: 12,
-    paddingLeft: 20,
-    paddingRight: 10
-  },
-  countryNameTextStyle:{
-    paddingLeft: 10,
-    color: "#000",
-    textAlign: "right"
-  },
-  selectedCountryTextStyle:{
-    paddingLeft: 5,
-    paddingRight: 5,
-    color: "#000",
-    textAlign: "right"
-  },
-  pickerTitleStyle: {
-    justifyContent: "center",
-    flexDirection: "row",
-    alignItems: "center",
-    textAlign: "center",
-    alignSelf: "center",
-    fontWeight: "bold",
-    flex: 1,
-    marginTop: 5,
-    fontSize: 15,
-    color: "#000"
-  },
-
-};
-
 CountryPicker.propTypes = {
-  animationType:PropTypes.any,
+  animationType: PropTypes.any,
   containerStyle: PropTypes.object,
   searchBarStyle: PropTypes.object,
-  pickerTitleStyle:PropTypes.object,
+  pickerTitleStyle: PropTypes.object,
   countryNameTextStyle: PropTypes.object,
   selectedCountryTextStyle: PropTypes.object,
   dropDownImage: PropTypes.any,
@@ -329,117 +250,129 @@ CountryPicker.propTypes = {
   searchBarPlaceHolder: PropTypes.string,
   pickerTitle: PropTypes.string,
   disable: PropTypes.bool,
-
 };
-
-const styles = StyleSheet.create({
-
-
-  pickerTitleStyle: {
-    justifyContent: "center",
-    flexDirection: "row",
-    alignItems: "center",
-    textAlign: "center",
-    alignSelf: "center",
-    fontWeight: "bold",
+CountryPicker.defaultProps = {
+  disable: false,
+  animationType: 'slide',
+  hideCountryFlag: false,
+  hideCountryCode: false,
+  dropDownImage: require('../../res/ic_drop_down.png'),
+  backButtonImage: require('../../res/ic_back_black.png'),
+  searchButtonImage: require('../../res/ic_search.png'),
+  countryCode: '91',
+  containerStyle: {
+    height: 60,
+    width: 250,
+    marginBottom: 10,
+    justifyContent: 'center',
+    padding: 10,
+    borderWidth: 2,
+    borderColor: '#303030',
+    backgroundColor: 'white',
+  },
+  searchBarStyle: {
     flex: 1,
-    marginTop: 5,
-    fontSize: 15,
-    color: "#000"
-  },
-  selectedCountryContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  listViewRowContainer: {
-    flexDirection: "row",
-    paddingStart:15,
-    margin: 10
-  },
-
-  searchImageStyle: {
-    width: 25,
-    height: 25,
-    marginTop: 5,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginLeft: 8,
     marginRight: 10,
-    justifyContent: "flex-end",
-    alignSelf: "center",
-    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }]
   },
   countryNameTextStyle: {
     paddingLeft: 10,
-    color: "#000",
-    textAlign: I18nManager.isRTL ? "right" : "left"
+    color: '#000',
+    textAlign: 'right',
+  },
+  selectedCountryTextStyle: {
+    paddingLeft: 5,
+    paddingRight: 5,
+    color: '#000',
+    textAlign: 'right',
+  },
+  pickerTitleStyle: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    flex: 1,
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#000',
+  },
+};
+const styles = StyleSheet.create({
+  divider: {
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: '#D3D3D3',
+    width: '95%',
+    height: 0.8,
+  },
+  selectedCountryContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  listViewRowContainer: {
+    flexDirection: 'row',
+    paddingStart: 15,
+    margin: 10,
+  },
+  searchImageStyle: {
+    width: 45,
+    height: '100%',
+    padding: 10,
+    justifyContent: 'flex-end',
+    alignSelf: 'center',
+    transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+  },
+  countryNameTextStyle: {
+    paddingLeft: 10,
+    color: '#000',
+    textAlign: I18nManager.isRTL ? 'right' : 'left',
   },
   countryFlagContainer: {
     width: 32,
     paddingRight: 8,
     height: 25,
-    justifyContent: "center",
-    alignItems: "center"
+    borderRadius: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   dropDownImageStyle: {
     width: 10,
-    marginLeft:5,
+    marginLeft: 5,
     paddingRight: 5,
     height: 10,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   searchBarContainer: {
     paddingTop: PADDING_TOP,
     height: HEADER_HEIGHT,
-    flexDirection: "row",
+    flexDirection: 'row',
     shadowRadius: 2,
     shadowOpacity: 1.0,
-backgroundColor:'rgba(255,255,255,9)',
+    backgroundColor: 'rgba(255,255,255,9)',
     shadowOffset: {
       width: 3,
-      height: 3
+      height: 3,
     },
-
-    shadowColor: "black",
-    width: "100%"
-  },
-
-  searchBarStyle: {
-    flex: 1,
-    borderRadius: 5,
-    borderWidth: 5,
-    borderColor: "#909090",
-    justifyContent: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    margin: 5,
-    padding: 10
+    shadowColor: 'black',
+    width: '100%',
   },
   backBtnContainer: {
-    paddingStart: 12,
-    height: "100%",
-    marginTop: 3,
-    justifyContent: "center"
+    paddingStart: 20,
+    height: '100%',
+    justifyContent: 'center',
   },
   backImageStyle: {
     width: 30,
     height: 30,
-    alignSelf: "center",
-    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }]
+    alignSelf: 'center',
+    transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
   },
-
-  backImageStyle: {
-    width: 30,
-    height: 30,
-    alignSelf: "center",
-    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }]
-  },
-  countryCodeTextStyle: {
-    paddingLeft: 5,
-    paddingRight: 5,
-    color: "#000",
-    textAlign: I18nManager.isRTL ? "right" : "left"
-  }
 });
+
 
 
 // import {AppRegistry} from 'react-native';
