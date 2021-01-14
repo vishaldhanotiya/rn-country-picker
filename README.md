@@ -5,9 +5,9 @@
   
 <img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country-picker.gif?alt=media&token=439be855-94a1-4a6c-973b-178ef6dc84e8">
   
-  <img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country-picker-image.jpg?alt=media&token=a69d38d2-615d-48ee-8a32-dfb0ec53621d">
+  <img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country-picker-cover.jpg?alt=media&token=b48000a8-7ebc-4ec7-bf70-77d220b86a14">
 
-<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/RNCountryPicker.gif?alt=media&token=fb0d9d7f-ff15-48b1-b8f4-4dace236b41a">
+<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country-picker-image.jpg?alt=media&token=a69d38d2-615d-48ee-8a32-dfb0ec53621d">
 
 </p>
 
