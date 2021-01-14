@@ -3,7 +3,7 @@
 ## Country picker with Country Code and Flag for react native support both platform IOs and android
 <p align="left">
   
-<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/Screenshot_20190417-135544_RNCountryPicker.jpg?alt=media&token=3ed14d3c-700f-4b66-ab81-18972ddb4d77">
+<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country-picker.gif?alt=media&token=439be855-94a1-4a6c-973b-178ef6dc84e8">
   
   <img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/Screenshot_20200810-110509_RNCountryPicker.jpg?alt=media&token=6564b662-12c5-4761-8366-c93f20658052">
 
