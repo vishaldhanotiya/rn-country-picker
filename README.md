@@ -27,7 +27,8 @@
 
 ## Usage
 
-```import React, {Component} from 'react';
+```jsx
+import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import CountryPicker from 'rn-country-picker';
 export default class App extends Component {
