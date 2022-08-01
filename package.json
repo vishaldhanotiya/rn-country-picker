@@ -1,0 +1,65 @@
+{
+  "_from": "rn-country-picker",
+  "_id": "rn-country-picker@0.0.13",
+  "_inBundle": false,
+  "_integrity": "sha512-R0rSDASPATTu/bf+R0sGBIysoJ4EWTn3VKsTtQT9HgAcZwn2V3kuBmXSYbq6ZPXoymb9EFIkPIKCaV8rKDc2eA==",
+  "_location": "/rn-country-picker",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "rn-country-picker",
+    "name": "rn-country-picker",
+    "escapedName": "rn-country-picker",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/rn-country-picker/-/rn-country-picker-0.0.13.tgz",
+  "_shasum": "9dd9a11c63f2a9fd5c60db2c2bbd4b00376843ec",
+  "_spec": "rn-country-picker",
+  "_where": "C:\\Users\\fahad\\Desktop\\React\\react-native\\gulf-workers",
+  "author": {
+    "name": "vishaldhanotiya"
+  },
+  "bugs": {
+    "url": "https://github.com/vishaldhanotiya/rn-country-picker/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "React native country picker",
+  "devDependencies": {
+    "@babel/core": "7.4.3",
+    "@babel/runtime": "7.4.3",
+    "babel-jest": "24.7.0",
+    "jest": "24.7.0",
+    "metro-react-native-babel-preset": "0.53.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "homepage": "https://github.com/vishaldhanotiya/rn-country-picker#readme",
+  "jest": {
+    "preset": "react-native"
+  },
+  "keywords": [
+    "rn-country-picker",
+    "country-picker",
+    "react-native-country-picker"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "rn-country-picker",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishaldhanotiya/rn-country-picker.git"
+  },
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "version": "0.0.13"
+}
