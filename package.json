@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "_from": "rn-country-picker",
   "_id": "rn-country-picker@0.0.13",
   "_inBundle": false,
@@ -32,6 +33,15 @@
   "bundleDependencies": false,
   "deprecated": false,
   "description": "React native country picker",
+=======
+  "name": "rn-country-picker",
+  "version": "0.0.10",
+  "private": false,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+>>>>>>> 0305591a438b06314de48d6f28fc08ee5bcd2f9b
   "devDependencies": {
     "@babel/core": "7.4.3",
     "@babel/runtime": "7.4.3",
@@ -40,15 +50,28 @@
     "metro-react-native-babel-preset": "0.53.1",
     "react-test-renderer": "16.8.3"
   },
+<<<<<<< HEAD
   "homepage": "https://github.com/vishaldhanotiya/rn-country-picker#readme",
   "jest": {
     "preset": "react-native"
   },
+=======
+  "jest": {
+    "preset": "react-native"
+  },
+  "description": "React native country picker",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vishaldhanotiya/rn-country-picker.git"
+  },
+>>>>>>> 0305591a438b06314de48d6f28fc08ee5bcd2f9b
   "keywords": [
     "rn-country-picker",
     "country-picker",
     "react-native-country-picker"
   ],
+<<<<<<< HEAD
   "license": "MIT",
   "main": "index.js",
   "name": "rn-country-picker",
@@ -62,4 +85,12 @@
     "test": "jest"
   },
   "version": "0.0.13"
+=======
+  "author": "vishaldhanotiya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vishaldhanotiya/rn-country-picker/issues"
+  },
+  "homepage": "https://github.com/vishaldhanotiya/rn-country-picker#readme"
+>>>>>>> 0305591a438b06314de48d6f28fc08ee5bcd2f9b
 }
