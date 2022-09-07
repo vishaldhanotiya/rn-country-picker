@@ -27,8 +27,7 @@
 
 ## Usage
 
-```jsx
-import React, {Component} from 'react';
+```import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import CountryPicker from 'rn-country-picker';
 export default class App extends Component {
@@ -36,11 +35,16 @@ export default class App extends Component {
     super(props);
     this.state = {
       mCountryCode: '91',
+      mCountryName: 'India'
     };
   }
 
   _selectedValue = (index) => {
     this.setState({mCountryCode: index});
+  };
+
+    _selectedCountryName = index => {
+    this.setState({ mCountryName: index });
   };
 
   render() {
@@ -65,6 +69,7 @@ export default class App extends Component {
           searchButtonImage={require('./res/ic_search.png')}
           countryCode={this.state.mCountryCode}
           selectedValue={this._selectedValue}
+          selectedCountryName={this._selectedCountryName}
         />
       </View>
     );

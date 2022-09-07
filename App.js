@@ -16,7 +16,8 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mCountryCode: "91"
+      mCountryCode: "92",
+      mCountryName: "Pakistan"
     };
     let userLocaleCountryCode = "";
    // userLocaleCountryCode = DeviceInfo.getDeviceCountry();
@@ -45,6 +46,10 @@ export default class App extends Component {
     this.setState({ mCountryCode: index });
   };
 
+  _selectedCountryName = index => {
+    this.setState({ mCountryName: index });
+  };
+
 
   render() {
     return (
@@ -68,6 +73,7 @@ export default class App extends Component {
           searchButtonImage={require("./res/ic_search.png")}
           countryCode={this.state.mCountryCode}
           selectedValue={this._selectedValue}
+          selectedCountryName={this._selectedCountryName}
         />
 
 
@@ -89,6 +95,7 @@ export default class App extends Component {
           searchButtonImage={require("./res/ic_search.png")}
           countryCode={this.state.mCountryCode}
           selectedValue={this._selectedValue}
+          selectedCountryName={this._selectedCountryName}
         />
 
 
@@ -110,6 +117,7 @@ export default class App extends Component {
           searchButtonImage={require("./res/ic_search.png")}
           countryCode={this.state.mCountryCode}
           selectedValue={this._selectedValue}
+          selectedCountryName={this._selectedCountryName}
         />
 
       </View>
@@ -163,7 +171,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 50,
     borderWidth: 4,
-
     borderColor: "#D3D3D3",
     justifyContent: "center",
     flexDirection: "row",

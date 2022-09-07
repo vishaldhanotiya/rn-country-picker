@@ -60,6 +60,7 @@ export default class CountryPicker extends Component {
       arrayData: CountryJSON,
     });
     this.props.selectedValue(item.callingCode);
+    this.props.selectedCountryName(item.name.common);
   }
 
   static _selectDefaultCountry(
