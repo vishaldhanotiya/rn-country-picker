@@ -11,6 +11,10 @@ import {
   TouchableOpacity,
   View,
   SafeAreaView,
+  LayoutAnimationType,
+  ViewStyle,
+  TextStyle,
+  ImageSourcePropType,
 } from "react-native";
 import CountryJSON from "./src/CountryPicker/countries.json";
 
@@ -65,7 +69,8 @@ const CountryPicker = ({
   selectedValue,
   pickerTitle,
 }: CountryPickerProps) => {
-  const [selectedCountry, updateSelectedCountry] = useState({});
+  const [selectedCountry, updateSelectedCountry] =
+    useState<typeof arrayData[0]>();
   const [hidePickerTitle, togglePickerTitle] = useState(false);
   const [hideSearchBar, toggleSearchBar] = useState(true);
   const [arrayData, updateArrayData] = useState(CountryJSON);
@@ -89,20 +94,20 @@ const CountryPicker = ({
     updateArrayData([...newData]);
   };
 
-  const _listItemClickListener = (item) => {
+  const _listItemClickListener = (item: typeof arrayData[0]) => {
     toggleModal(false);
     updateSelectedFlag(true);
     updateSelectedCountry(item);
     updateArrayData(CountryJSON);
-    selectedValue(item.callingCode);
+    selectedValue && selectedValue(item.callingCode);
   };
 
   const _selectDefaultCountry = (
-    defaultText,
-    dropDownImage,
-    hideCountryFlag,
-    hideCountryCode,
-    selectedCountryTextStyle
+    defaultText: string,
+    dropDownImage: ImageSourcePropType,
+    hideCountryFlag: boolean,
+    hideCountryCode: boolean,
+    selectedCountryTextStyle: TextStyle
   ) => {
     const newData = CountryJSON.filter(function (item) {
       const itemData = item.callingCode;
@@ -128,7 +133,7 @@ const CountryPicker = ({
     );
   };
 
-  const _renderListItems = ({ item, index }) => {
+  const _renderListItems = ({ item }: { item: typeof arrayData[0] }) => {
     return (
       <View>
         <TouchableOpacity onPress={() => _listItemClickListener(item)}>
@@ -199,7 +204,7 @@ const CountryPicker = ({
         onRequestClose={() => toggleModal(false)}
       >
         <SafeAreaView style={{ flex: 1 }}>
-          <View elevation={10} style={styles.searchBarContainer}>
+          <View style={styles.searchBarContainer}>
             <TouchableOpacity
               disabled={disable}
               activeOpacity={0.5}
@@ -266,22 +271,22 @@ const CountryPicker = ({
 };
 export default CountryPicker;
 export interface CountryPickerProps {
-  animationType: any;
-  containerStyle: object;
-  searchBarStyle: object;
-  pickerTitleStyle: object;
-  countryNameTextStyle: object;
-  selectedCountryTextStyle: object;
-  dropDownImage: any;
-  backButtonImage: any;
-  searchButtonImage: any;
-  countryCode: any;
-  hideCountryFlag: boolean;
-  hideCountryCode: boolean;
-  searchBarPlaceHolder: string;
-  pickerTitle: string;
-  disable: boolean;
-  selectedValue: Function;
+  animationType?: "none" | "slide" | "fade" | undefined;
+  containerStyle?: ViewStyle;
+  searchBarStyle?: ViewStyle;
+  pickerTitleStyle?: TextStyle;
+  countryNameTextStyle?: TextStyle;
+  selectedCountryTextStyle?: TextStyle;
+  dropDownImage?: ImageSourcePropType;
+  backButtonImage?: ImageSourcePropType;
+  searchButtonImage?: ImageSourcePropType;
+  countryCode?: string;
+  hideCountryFlag?: boolean;
+  hideCountryCode?: boolean;
+  searchBarPlaceHolder?: string;
+  pickerTitle?: string;
+  disable?: boolean;
+  selectedValue?: Function;
 }
 const styles = StyleSheet.create({
   divider: {
@@ -331,6 +336,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   searchBarContainer: {
+    elevation: 10,
     height: 56,
     flexDirection: "row",
     shadowRadius: 2,
