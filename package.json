@@ -18,7 +18,7 @@
     "preset": "react-native"
   },
   "description": "React native country picker",
-  "main": "index.js",
+  "main": "index.tsx",
   "repository": {
     "type": "git",
     "url": "https://github.com/vishaldhanotiya/rn-country-picker.git"
