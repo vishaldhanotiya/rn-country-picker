@@ -97,9 +97,24 @@ const CountryPicker = (props: CountryPickerProps) => {
                 style={styles.countryFlagContainer}
               />
             )}
-            <Text style={props.countryNameTextStyle}>
-              {item.name[props.language] + " (+" + item.callingCode + ")"}
-            </Text>
+            <View style={styles.countryTitleView}>
+              <Text
+                style={[
+                  styles.countryNameTextStyle,
+                  props.countryNameTextStyle,
+                ]}
+              >
+                {item.name[props.language]}
+              </Text>
+              <Text
+                style={[
+                  styles.countryNameTextStyle,
+                  props.countryNameTextStyle,
+                ]}
+              >
+                {`(+${item.callingCode})`}
+              </Text>
+            </View>
           </View>
           <View style={styles.divider} />
         </TouchableOpacity>
@@ -254,7 +269,6 @@ CountryPicker.defaultProps = {
     marginRight: 10,
   },
   countryNameTextStyle: {
-    paddingLeft: 10,
     color: "#000",
     textAlign: "right",
   },
@@ -331,8 +345,11 @@ const styles = StyleSheet.create({
   },
   listViewRowContainer: {
     flexDirection: "row",
-    paddingStart: 15,
+    alignItems: "center",
     margin: 10,
+  },
+  countryTitleView: {
+    flexDirection: "row",
   },
   searchImageStyle: {
     width: 45,
@@ -343,13 +360,13 @@ const styles = StyleSheet.create({
     transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
   },
   countryNameTextStyle: {
-    paddingLeft: 10,
+    paddingHorizontal: 2.5,
     color: "#000",
     textAlign: I18nManager.isRTL ? "right" : "left",
   },
   countryFlagContainer: {
     width: 32,
-    paddingRight: 8,
+    marginHorizontal: 5,
     height: 25,
     borderRadius: 2,
     justifyContent: "center",
