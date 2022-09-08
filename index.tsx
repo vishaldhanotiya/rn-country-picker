@@ -136,7 +136,10 @@ const CountryPicker = (props: CountryPickerProps) => {
                 source={{
                   uri: selectedCountry?.flag || "",
                 }}
-                style={styles.countryFlagContainer}
+                style={[
+                  styles.countryFlagContainer,
+                  props.countryFlagContainer,
+                ]}
               />
             )}
             {props.hideCountryCode ? null : (
@@ -147,7 +150,7 @@ const CountryPicker = (props: CountryPickerProps) => {
 
             <Image
               source={props.dropDownImage}
-              style={styles.dropDownImageStyle}
+              style={[styles.dropDownImageStyle, props.dropDownImageStyle]}
             />
           </View>
         </TouchableOpacity>
