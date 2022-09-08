@@ -4,12 +4,14 @@ import {
   I18nManager,
   Image,
   Modal,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
   SafeAreaView,
+  LayoutAnimationType,
   ViewStyle,
   TextStyle,
   ImageSourcePropType,
@@ -66,7 +68,6 @@ const CountryPicker = ({
   },
   selectedValue,
   pickerTitle,
-  language = "en",
 }: CountryPickerProps) => {
   const [selectedCountry, updateSelectedCountry] =
     useState<typeof arrayData[0]>();
@@ -84,11 +85,10 @@ const CountryPicker = ({
         return itemData.startsWith(textData);
       });
     } else {
-      var newData: typeof CountryJSON = CountryJSON.filter(function (item) {
-        const itemData =
-          item.name[language]?.toUpperCase() || item.name[language];
-        const textData = searchText?.toUpperCase() || searchText;
-        return itemData?.includes(textData);
+      var newData = CountryJSON.filter(function (item) {
+        const itemData = item.name.common.toUpperCase();
+        const textData = searchText.toUpperCase();
+        return itemData.startsWith(textData);
       });
     }
     updateArrayData([...newData]);
@@ -145,7 +145,7 @@ const CountryPicker = ({
               />
             )}
             <Text style={countryNameTextStyle}>
-              {item.name[language] + " (+" + item.callingCode + ")"}
+              {item.name.common + " (+" + item.callingCode + ")"}
             </Text>
           </View>
           <View style={styles.divider} />
@@ -287,23 +287,6 @@ export interface CountryPickerProps {
   pickerTitle?: string;
   disable?: boolean;
   selectedValue?: Function;
-  language:
-    | "en"
-    | "cym"
-    | "deu"
-    | "fra"
-    | "hrv"
-    | "ita"
-    | "jpn"
-    | "nld"
-    | "por"
-    | "rus"
-    | "spa"
-    | "svk"
-    | "fin"
-    | "zho"
-    | "isr"
-    | "ar";
 }
 const styles = StyleSheet.create({
   divider: {
