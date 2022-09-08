@@ -175,7 +175,9 @@ const CountryPicker = (props: CountryPickerProps) => {
         onRequestClose={() => toggleModal(false)}
       >
         <SafeAreaView style={{ flex: 1 }}>
-          <View style={styles.searchBarContainer}>
+          <View
+            style={[styles.searchBarContainer, props.searchBarContainerStyle]}
+          >
             <TouchableOpacity
               disabled={props.disable}
               activeOpacity={0.5}
@@ -297,6 +299,7 @@ export interface CountryPickerProps {
   animationType?: "none" | "slide" | "fade" | undefined;
   containerStyle?: ViewStyle;
   searchBarStyle?: ViewStyle;
+  searchBarContainerStyle?: ViewStyle;
   pickerTitleStyle?: TextStyle;
   countryNameTextStyle?: TextStyle;
   selectedCountryTextStyle?: TextStyle;
@@ -381,17 +384,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   searchBarContainer: {
-    elevation: 10,
     height: 56,
     flexDirection: "row",
-    shadowRadius: 2,
-    shadowOpacity: 1.0,
     backgroundColor: "rgba(255,255,255,9)",
-    shadowOffset: {
-      width: 3,
-      height: 3,
-    },
-    shadowColor: "black",
+    borderBottomColor: "grey",
+    borderBottomWidth: 1,
     width: "100%",
   },
   backBtnContainer: {
