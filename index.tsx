@@ -13,6 +13,7 @@ import {
   ViewStyle,
   TextStyle,
   ImageSourcePropType,
+  ImageStyle,
 } from "react-native";
 import CountryJSON from "./src/CountryPicker/countries.json";
 
@@ -69,14 +70,17 @@ const CountryPicker = (props: CountryPickerProps) => {
           {hideCountryFlag ? null : (
             <Image
               source={{ uri: newData[0].flag }}
-              style={styles.countryFlagContainer}
+              style={[styles.countryFlagContainer, props.countryFlagContainer]}
             />
           )}
           {hideCountryCode ? null : (
             <Text style={selectedCountryTextStyle}>{"+" + defaultText}</Text>
           )}
 
-          <Image source={dropDownImage} style={styles.dropDownImageStyle} />
+          <Image
+            source={dropDownImage}
+            style={[styles.dropDownImageStyle, props.dropDownImageStyle]}
+          />
         </View>
       </View>
     );
@@ -285,6 +289,8 @@ export interface CountryPickerProps {
   dropDownImage?: ImageSourcePropType;
   backButtonImage?: ImageSourcePropType;
   searchButtonImage?: ImageSourcePropType;
+  dropDownImageStyle?: ImageStyle;
+  countryFlagContainer?: ImageStyle;
   countryCode?: string;
   hideCountryFlag?: boolean;
   hideCountryCode?: boolean;
