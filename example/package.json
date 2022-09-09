@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react": "18.1.0",
-    "react-native": "0.70.0"
+    "react-native": "0.70.0",
+    "rn-country-picker":"../rn-country-picker-0.0.12.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

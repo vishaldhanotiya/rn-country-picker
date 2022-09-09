@@ -1,120 +1,98 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import React, {Component} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import CountryPicker from 'rn-country-picker';
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mCountryCode: '91',
+    };
+  }
 
-import React, {type PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  _selectedValue = index => {
+    this.setState({mCountryCode: index});
   };
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.titleText}>React Native Country Picker</Text>
+
+        <CountryPicker
+          disable={false}
+          animationType={'slide'}
+          language="ar"
+          containerStyle={styles.pickerStyle}
+          pickerTitleStyle={styles.pickerTitleStyle}
+          //dropDownImage={require('../res/ic_back_black.png')}
+          selectedCountryTextStyle={styles.selectedCountryTextStyle}
+          countryNameTextStyle={styles.countryNameTextStyle}
+          pickerTitle={'Country Picker'}
+          searchBarPlaceHolder={'Search......'}
+          hideCountryFlag={false}
+          hideCountryCode={false}
+          searchBarStyle={styles.searchBarStyle}
+          // backButtonImage={require('../res/ic_back_black.png')}
+          // searchButtonImage={require('../res/ic_search.png')}
+          countryCode={this.state.mCountryCode}
+          selectedValue={this._selectedValue}
+        />
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  titleText: {
+    color: '#000',
+    fontSize: 25,
+    marginBottom: 25,
+    fontWeight: 'bold',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  pickerTitleStyle: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    flex: 1,
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#000',
   },
-  highlight: {
-    fontWeight: '700',
+  pickerStyle: {
+    height: 60,
+    width: 250,
+    marginBottom: 10,
+    justifyContent: 'center',
+    padding: 10,
+    borderWidth: 2,
+    borderColor: '#303030',
+    backgroundColor: 'white',
+  },
+  selectedCountryTextStyle: {
+    paddingLeft: 5,
+    paddingRight: 5,
+    color: '#000',
+    textAlign: 'right',
+  },
+
+  countryNameTextStyle: {
+    paddingLeft: 10,
+    color: '#000',
+    textAlign: 'right',
+  },
+
+  searchBarStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginLeft: 8,
+    marginRight: 10,
   },
 });
-
-export default App;
