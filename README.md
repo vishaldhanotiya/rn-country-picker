@@ -4,7 +4,7 @@
 
 <p align="left">
   
-<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country-picker.gif?alt=media&token=439be855-94a1-4a6c-973b-178ef6dc84e8">
+<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country_picker_gif.gif?alt=media&token=1cb50357-723f-4423-8dea-9e53fdf163fb">
   
   <img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country-picker-cover.jpg?alt=media&token=b48000a8-7ebc-4ec7-bf70-77d220b86a14">
 
@@ -17,9 +17,10 @@
 1. Light weight country picker npm.
 2. Cross platform compatibility android and ios both.
 3. Search country using country code or country code.
-4. Dynamically change dropdown, search and back button images.
-5. Customizable search bar style and text colors.
-6. Change animation(Slide, fade, none).
+4. Support multiple language search and list items.
+5. Dynamically change dropdown, search and back button images.
+6. Customizable search bar style and text colors.
+7. Change animation(Slide, fade, none).
 
 ## Installation
 
@@ -27,103 +28,93 @@
 
 ## Usage
 
-```jsx
-import React, { Component } from "react";
+```tsx
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import CountryPicker from "rn-country-picker";
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mCountryCode: "91",
-    };
-  }
 
-  _selectedValue = (index) => {
-    this.setState({ mCountryCode: index });
-  };
+const App = () => {
+	const [countryCode, setCountryCode] = useState<string>("91");
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.titleText}>React Native Country Picker</Text>
+	const selectedValue = (value: string) => {
+		setCountryCode(value);
+	};
 
-        <CountryPicker
-          disable={false}
-          animationType={"slide"}
-          containerStyle={styles.pickerStyle}
-          pickerTitleStyle={styles.pickerTitleStyle}
-          dropDownImage={require("./res/ic_drop_down.png")}
-          selectedCountryTextStyle={styles.selectedCountryTextStyle}
-          countryNameTextStyle={styles.countryNameTextStyle}
-          pickerTitle={"Country Picker"}
-          searchBarPlaceHolder={"Search......"}
-          hideCountryFlag={false}
-          hideCountryCode={false}
-          searchBarStyle={styles.searchBarStyle}
-          backButtonImage={require("./res/ic_back_black.png")}
-          searchButtonImage={require("./res/ic_search.png")}
-          countryCode={this.state.mCountryCode}
-          selectedValue={this._selectedValue}
-        />
-      </View>
-    );
-  }
-}
+	return (
+		<View style={styles.container}>
+			<Text style={styles.titleText}>React Native Country Picker</Text>
+			<CountryPicker
+				disable={false}
+				animationType={"slide"}
+				language="en"
+				containerStyle={styles.pickerStyle}
+				pickerTitleStyle={styles.pickerTitleStyle}
+				dropDownImage={require("./res/ic_drop_down.png")}
+				selectedCountryTextStyle={styles.selectedCountryTextStyle}
+				countryNameTextStyle={styles.countryNameTextStyle}
+				pickerTitle={"Country Picker"}
+				searchBarPlaceHolder={"Search......"}
+				hideCountryFlag={false}
+				hideCountryCode={false}
+				searchBarStyle={styles.searchBarStyle}
+				backButtonImage={require("./res/ic_back_black.png")}
+				searchButtonImage={require("./res/ic_search.png")}
+				countryCode={"1"}
+				selectedValue={selectedValue}
+			/>
+		</View>
+	);
+};
+export default App;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF",
-  },
-  titleText: {
-    color: "#000",
-    fontSize: 25,
-    marginBottom: 25,
-    fontWeight: "bold",
-  },
-  pickerTitleStyle: {
-    justifyContent: "center",
-    flexDirection: "row",
-    alignSelf: "center",
-    fontWeight: "bold",
-    flex: 1,
-    marginLeft: 10,
-    fontSize: 16,
-    color: "#000",
-  },
-  pickerStyle: {
-    height: 60,
-    width: 250,
-    marginBottom: 10,
-    justifyContent: "center",
-    padding: 10,
-    borderWidth: 2,
-    borderColor: "#303030",
-    backgroundColor: "white",
-  },
-  selectedCountryTextStyle: {
-    paddingLeft: 5,
-    paddingRight: 5,
-    color: "#000",
-    textAlign: "right",
-  },
+	container: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "#F5FCFF",
+	},
+	titleText: {
+		color: "#000",
+		fontSize: 25,
+		marginBottom: 25,
+		fontWeight: "bold",
+	},
+	pickerTitleStyle: {
+		justifyContent: "center",
+		flexDirection: "row",
+		alignSelf: "center",
+		fontWeight: "bold",
+	},
+	pickerStyle: {
+		height: 54,
+		width: 150,
+		marginVertical: 10,
+		borderColor: "#303030",
+		alignItems: "center",
+		marginHorizontal: 10,
+		padding: 10,
+		backgroundColor: "white",
+		borderRadius: 5,
+		borderWidth: 2,
+		fontSize: 16,
+		color: "#000",
+	},
+	selectedCountryTextStyle: {
+		paddingLeft: 5,
+		color: "#000",
+		textAlign: "right",
+	},
 
-  countryNameTextStyle: {
-    paddingLeft: 10,
-    color: "#000",
-    textAlign: "right",
-  },
+	countryNameTextStyle: {
+		paddingLeft: 10,
+		color: "#000",
+		textAlign: "right",
+	},
 
-  searchBarStyle: {
-    flex: 1,
-    justifyContent: "center",
-    flexDirection: "row",
-    marginLeft: 8,
-    marginRight: 10,
-  },
+	searchBarStyle: {
+		flex: 1,
+	},
 });
 ```
 
@@ -134,13 +125,14 @@ const styles = StyleSheet.create({
 | countryCode              | -       | string                   | Default and selected country code                              | Required          |
 | pickerTitle              | -       | string                   | Change picker title                                            | Required          |
 | pickerTitleStyle         | -       | string                   | Customize picker title style                                   | Required          |
-| searchBarPlaceHolder     | -       | string                   | Change search bar placeholder                                  | Required          |
-| searchBarStyle           | -       | object                   | Customize search bar style                                     | Required          |
+| searchBarPlaceHolder     | -       | string                   | Change search bar placeholder                                  | Optional          |
+| searchBarStyle           | -       | object                   | Customize search bar text input style                          | Optional          |
+| searchBarContainerStyle  | -       | object                   | Customize search bar container style                           | Optional          |
 | containerStyle           | -       | object                   | Customize picker style                                         | Required          |
 | countryNameTextStyle     | -       | object                   | Customize country name text style(List View)                   | Optional          |
 | selectedCountryTextStyle | -       | object                   | Customize selected label text style                            | Optional          |
-| dropDownImageStyle       | -       | object                   | Change dropdwon arrow style                                    | Optional          |
-| countryFlagContainer     | -       | object                   | Customize flag style                                           | Optional          |
+| dropDownImageStyle       | -       | object                   | Change dropdown arrow style                                    | Optional          |
+| countryFlagStyle         | -       | object                   | Customize flag style                                           | Optional          |
 | searchButtonImage        | -       | png/jpg                  | Add custom search image                                        | Optional          |
 | backButtonImage          | -       | png/jpg                  | Add custom back button image                                   | Optional          |
 | dropDownImage            | -       | png/jpg                  | Add custom drop down image                                     | Optional          |
