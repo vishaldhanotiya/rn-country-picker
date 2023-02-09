@@ -16,8 +16,8 @@ import {
 } from "react-native";
 import CountryJSON from "./src/CountryPicker/countries.json";
 
-const HEADER_HEIGHT = Platform.OS === "ios" ? 78 : 56;
-const PADDING_TOP = Platform.OS === "ios" ? 20 : 0;
+const HEADER_HEIGHT = Platform.OS === "ios" ? 85 : 56;
+const PADDING_TOP = Platform.OS === "ios" ? 25 : 0;
 
 export default class CountryPicker extends Component {
   constructor() {
@@ -52,6 +52,7 @@ export default class CountryPicker extends Component {
     });
   }
 
+
   _listItemClickListener(item) {
     this.setState({
       modalVisible: false,
@@ -62,7 +63,7 @@ export default class CountryPicker extends Component {
       arrayData: CountryJSON,
     });
     this.props.selectedValue(item.callingCode);
-    this.props.selectedCountryName(item.name.common);
+    this.props.selectedCountryName && this.props.selectedCountryName(item.name.common);
   }
 
   static _selectDefaultCountry(
