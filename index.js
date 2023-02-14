@@ -16,8 +16,8 @@ import {
 } from "react-native";
 import CountryJSON from "./src/CountryPicker/countries.json";
 
-const HEADER_HEIGHT = Platform.OS === "ios" ? 85 : 56;
-const PADDING_TOP = Platform.OS === "ios" ? 25 : 0;
+const HEADER_HEIGHT = Platform.OS === "ios" ? 93 : 56;
+const PADDING_TOP = Platform.OS === "ios" ? 33 : 0;
 
 export default class CountryPicker extends Component {
   constructor() {
