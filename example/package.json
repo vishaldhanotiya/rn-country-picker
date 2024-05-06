@@ -17,7 +17,7 @@
     "react-native": "0.73.6",
     "react-native-reanimated": "^3.10.0",
     "typescript": "^5.3.0",
-    "rn-country-picker":"../rn-country-picker-1.0.6.tgz"
+    "rn-country-picker":"../rn-country-picker-1.0.2.tgz"
 
   },
   "devDependencies": {
