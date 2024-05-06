@@ -112,6 +112,11 @@ const styles = StyleSheet.create({
 });
 ```
 
+## Important Note
+ While selecting the USA It showed the wrong flag icon because both countries have the same country code so we added a new prop that is the `countryId` field. 
+ For the USA countryId is 231
+ For Canada, countryId is 38
+
 ## Properties
 
 | Prop                     | Default | Type                     | Description                                                    | Required/Optional |
