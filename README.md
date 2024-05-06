@@ -2,23 +2,17 @@
 
 ## Country picker with Country Code and Flag for react native support both platform IOs and android
 
-<p align="left">
-  
-<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country_picker_gif.gif?alt=media&token=1cb50357-723f-4423-8dea-9e53fdf163fb">
-  
-  <img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country-picker-cover.jpg?alt=media&token=b48000a8-7ebc-4ec7-bf70-77d220b86a14">
-
-<img  width="250" height="400" src="https://firebasestorage.googleapis.com/v0/b/vishaldhanotiya-1168.appspot.com/o/country-picker-image.jpg?alt=media&token=a69d38d2-615d-48ee-8a32-dfb0ec53621d">
-
+<p align="center">
+<img  width="270" height="450" src="https://github.com/vishaldhanotiya/rn-country-picker/assets/101810165/148226bd-efa3-42b0-85a4-d5f19d5cd438">
 </p>
 
 ## Features
 
-1. Light weight country picker npm.
-2. Cross platform compatibility android and ios both.
+1. Lightweight country picker npm.
+2. Cross-platform compatibility android and ios both.
 3. Search country using country code or country code.
 4. Support multiple language search and list items.
-5. Dynamically change dropdown, search and back button images.
+5. Dynamically change dropdown, search, and back button images.
 6. Customizable search bar style and text colors.
 7. Change animation(Slide, fade, none).
 
@@ -60,6 +54,7 @@ const App = () => {
 				backButtonImage={require("./res/ic_back_black.png")}
 				searchButtonImage={require("./res/ic_search.png")}
 				countryCode={"1"}
+                                countryId={231}
 				selectedValue={selectedValue}
 			/>
 		</View>
