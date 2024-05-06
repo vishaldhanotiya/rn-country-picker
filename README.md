@@ -1,6 +1,6 @@
 # rn-country-picker
 
-## Country picker with Country Code and Flag for react native support both platform IOs and android
+## Country picker for react native support both platform IOs and android
 
 <p align="center">
 <img  width="270" height="450" src="https://github.com/vishaldhanotiya/rn-country-picker/assets/101810165/148226bd-efa3-42b0-85a4-d5f19d5cd438">
