@@ -12,10 +12,10 @@ import {
   ImageSourcePropType,
   ImageStyle,
 } from "react-native";
-import CountryJSON from "./src/CountryPicker/countries.json";
-import SearchBar from "./src/CountryPicker/SearchBar";
-import CountryListItem from "./src/CountryPicker/CountryListItem";
-import CountryButton from "./src/CountryPicker/CountryButton";
+import CountryJSON from "./countries.json";
+import SearchBar from "./SearchBar";
+import CountryListItem from "./CountryListItem";
+import CountryButton from "./CountryButton";
 
 const CountryPicker = (props: CountryPickerProps) => {
   const [selectedCountry, setSelectedCountry] = useState<CountryJsonProps>();
@@ -116,10 +116,10 @@ CountryPicker.defaultProps = {
   animationType: "slide",
   hideCountryFlag: false,
   hideCountryCode: false,
-  dropDownImage: require("./res/ic_drop_down.png"),
-  backButtonImage: require("./res/ic_back_black.png"),
-  searchButtonImage: require("./res/ic_search.png"),
-  closeButtonImage: require("./res/close.png"),
+  dropDownImage: require("../../res/ic_drop_down.png"),
+  backButtonImage: require("../../res/ic_back_black.png"),
+  searchButtonImage: require("../../res/ic_search.png"),
+  closeButtonImage: require("../../res/close.png"),
   countryCode: "91",
   searchBarPlaceHolder: "Search...",
   selectedValue: "",

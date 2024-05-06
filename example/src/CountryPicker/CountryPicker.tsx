@@ -12,10 +12,10 @@ import {
   ImageSourcePropType,
   ImageStyle,
 } from "react-native";
-import CountryJSON from "./src/CountryPicker/countries.json";
-import SearchBar from "./src/CountryPicker/SearchBar";
-import CountryListItem from "./src/CountryPicker/CountryListItem";
-import CountryButton from "./src/CountryPicker/CountryButton";
+import CountryJSON from "./countries.json";
+import SearchBar from "./SearchBar";
+import CountryListItem from "./CountryListItem";
+import CountryButton from "./CountryButton";
 
 const CountryPicker = (props: CountryPickerProps) => {
   const [selectedCountry, setSelectedCountry] = useState<CountryJsonProps>();
@@ -67,24 +67,24 @@ const CountryPicker = (props: CountryPickerProps) => {
         onRequestClose={() => toggleModal(false)}
       >
         <SafeAreaView style={styles.safeAreaView}>
-          <Pressable style={{ flex: 1 }} onPress={() => toggleModal(false)} />
-          <View style={styles.container}>
           <Pressable
-          style={{alignItems:'center', padding:10}}
-            disabled={props.disable}
-            
-            onPress={() => {
+            style={styles.onPressClose}
+            onPress={() => toggleModal(false)}
+          />
+          <View style={styles.container}>
+            <Pressable
+              style={styles.closePress}
+              onPress={() => {
                 setCountryJson(CountryJSON);
-               toggleModal(false);
-            }}>
-            <View style={styles.imageStyle}></View>
-        </Pressable> 
+                toggleModal(false);
+              }}
+            >
+              <View style={styles.backDropStyle} />
+            </Pressable>
             <SearchBar
               {...props}
               searchByCountryNameCode={searchByCountryNameCode}
             />
-        
-    
 
             <FlatList
               data={countryJson}
@@ -116,10 +116,10 @@ CountryPicker.defaultProps = {
   animationType: "slide",
   hideCountryFlag: false,
   hideCountryCode: false,
-  dropDownImage: require("./res/ic_drop_down.png"),
-  backButtonImage: require("./res/ic_back_black.png"),
-  searchButtonImage: require("./res/ic_search.png"),
-  closeButtonImage: require("./res/close.png"),
+  dropDownImage: require("../../res/ic_drop_down.png"),
+  backButtonImage: require("../../res/ic_back_black.png"),
+  searchButtonImage: require("../../res/ic_search.png"),
+  closeButtonImage: require("../../res/close.png"),
   countryCode: "91",
   searchBarPlaceHolder: "Search...",
   selectedValue: "",
@@ -150,12 +150,10 @@ export interface CountryJsonProps {
   };
 }
 export interface CountryPickerProps {
-  toggleModal1: any;
   countryId: any;
-  selectedCountry: any;
   animationType?: "none" | "slide" | "fade" | undefined;
-  containerStyle?: ViewStyle;
   searchBarContainerStyle?: ViewStyle;
+  pickerContainerStyle?: ViewStyle;
   pickerTitleStyle?: TextStyle;
   countryNameTextStyle?: TextStyle;
   selectedCountryTextStyle?: TextStyle;
@@ -193,28 +191,29 @@ export interface CountryPickerProps {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "70%",
-    borderRadius: 20,
+    height: "80%",
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
     backgroundColor: "white",
-    position: "absolute", //Here is the trick
-    bottom: 0,
-    elevation: 50,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0,
-    shadowRadius: 2,
+    paddingBottom: 30,
+    bottom: -30,
+  },
+  fullScreenContainer: {
+    width: "100%",
+    height: "100%",
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    backgroundColor: "white",
+    paddingBottom: 30,
+    bottom: -30,
   },
   safeAreaView: {
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(0,0,0,0.2)",
   },
-  containerStyle: {
-    justifyContent: "center",
-  },
+  onPressClose: { flex: 1 },
+  closePress: { alignItems: "center", padding: 10 },
 
   selectedCountryTextStyle: {
     color: "#000",
@@ -238,19 +237,13 @@ const styles = StyleSheet.create({
     height: 25,
     borderRadius: 3,
   },
-  dropDownImage: {
-    width: 10,
-    height: 10,
-    marginHorizontal: 5,
-  },
   flatListStyle: {
     paddingHorizontal: 15,
-    height: "70%",
   },
-  imageStyle:{
+  backDropStyle: {
     width: 40,
     height: 3,
-    borderRadius:5,
-    backgroundColor:'grey'
-  }
+    borderRadius: 5,
+    backgroundColor: "grey",
+  },
 });
