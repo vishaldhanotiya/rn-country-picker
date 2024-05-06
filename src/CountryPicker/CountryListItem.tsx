@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   countryNameTextStyle: {
-    color: "#000",marginLeft:10,
+    color: "#000",
+    marginLeft:10,
     textAlign: I18nManager.isRTL ? "right" : "left",
   },
   countryFlagStyle: {

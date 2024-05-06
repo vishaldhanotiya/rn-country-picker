@@ -1,37 +1,25 @@
-
+import { View, StyleSheet, TextInput, Image, I18nManager, Platform } from "react-native";
 import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  TextInput,
-  Image,
-  I18nManager,
-} from "react-native";
+
 const SearchBar = (props) => {
-const [text, setText]=useState('')
+  const [text, setText] = useState("");
 
   return (
     <View style={[styles.searchBarStyle, props.searchBarContainerStyle]}>
-      
-   
-        <Image
-          resizeMode="center"
-          style={styles.imageStyle}
-          source={props.searchButtonImage}
-        />
+      <Image
+        resizeMode="center"
+        style={styles.imageStyle}
+        source={props.searchButtonImage}
+      />
 
       {!props.hideSearchBar && (
         <TextInput
-        style={{flex:1}}
-           onChangeText={
-            props.searchByCountryNameCode
-           
-          }
-          onChange={(event)=>{
-            const {eventCount, target, text} = event.nativeEvent;
-            setText(text)
-          }  
-        }
+          style={styles.textInputStyle}
+          onChangeText={props.searchByCountryNameCode}
+          onChange={(event) => {
+            const {  text } = event.nativeEvent;
+            setText(text);
+          }}
           placeholderTextColor={"#A9A9A9"}
           placeholder={props.searchBarPlaceHolder}
           keyboardType="default"
@@ -40,11 +28,13 @@ const [text, setText]=useState('')
         />
       )}
 
-        {text &&  <Image
+      {text && (
+        <Image
           resizeMode="center"
           style={styles.imageStyle}
           source={props.closeButtonImage}
-        />}
+        />
+      )}
     </View>
   );
 };
@@ -54,26 +44,30 @@ const styles = StyleSheet.create({
   containerStyle: {
     justifyContent: "center",
   },
-
+  textInputStyle: { 
+    flex: 1,
+    marginLeft:10
+   },
   searchBarStyle: {
     margin: 10,
-    flexDirection: 'row',
+    padding:10,
+    flexDirection: "row",
     height: 45,
+    alignItems:"center",
     shadowOpacity: 1.0,
     shadowRadius: 5,
     shadowOffset: {
       width: 1,
       height: 1,
     },
-    backgroundColor: 'rgba(255,255,255,1)',
-    shadowColor: '#d3d3d3',
+    backgroundColor: "rgba(255,255,255,1)",
+    shadowColor: Platform.OS==='ios'?"rgba(0,0,0,0.3)":"rgba(0,0,0,1)",
     borderRadius: 10,
-    elevation: 3,
-    marginHorizontal: 10,
+    elevation: 5,
   },
   imageStyle: {
-    width: 45,
-    height: 45,
+    width: 20,
+    height: 20,
     transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
   },
 });

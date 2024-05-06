@@ -6,13 +6,32 @@ import {
   StyleSheet,
   Image,
   Pressable,
-  I18nManager,
+  ImageStyle,
+  TextStyle,
+  ViewStyle,
 } from "react-native";
 import CountryJSON from "./countries.json";
-import { CountryPickerProps } from "./CountryPicker";
 
+interface CountryButtonProps {
+  countryId?: any;
+  pickerContainerStyle?: ViewStyle;
+  selectedCountryTextStyle?: TextStyle;
+  dropDownImageStyle?: ImageStyle;
+  countryFlagStyle?: ImageStyle;
+  dropDownImage?: any;
+  countryCode?: string | any;
+  hideCountryFlag?: boolean;
+  hideCountryCode?: boolean;
+  searchBarPlaceHolder?: string;
+  pickerTitle?: string;
+  disable?: boolean;
+  selectedValue?: Function;
+  toggleModal1?: any;
+  selectedFlag?: any;
+  selectedCountry?: any;
+}
 // create a component
-const CountryButton = (props: CountryPickerProps) => {
+const CountryButton = (props: CountryButtonProps) => {
   const filteredJson = CountryJSON.filter(function (item) {
     return item.callingCode === props.countryCode;
   });
@@ -23,14 +42,14 @@ const CountryButton = (props: CountryPickerProps) => {
       return filteredJson.filter((item) => item.id == props.countryId)[0].flag;
     }
   };
-  
+
   return (
     <Pressable
-      style={{ flexDirection: "row" }}
+      style={styles.onPressStyle}
       disabled={props.disable}
       onPress={() => props.toggleModal1(true)}
     >
-      <View style={styles.selectedCountryView}>
+      <View style={[styles.selectedCountryView, props.pickerContainerStyle]}>
         {!props.hideCountryFlag && (
           <Image
             source={{
@@ -67,6 +86,9 @@ const CountryButton = (props: CountryPickerProps) => {
 export default CountryButton;
 
 const styles = StyleSheet.create({
+  onPressStyle: {
+    flexDirection: "row",
+  },
   selectedCountryTextStyle: {
     color: "#000",
     textAlign: "right",
@@ -75,6 +97,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    padding: 10,
+    borderWidth: 2,
+    borderRadius: 5,
   },
   countryFlagStyle: {
     width: 35,
