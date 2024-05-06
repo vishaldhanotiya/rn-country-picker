@@ -50,7 +50,6 @@ const App = () => {
 				searchBarPlaceHolder={"Search......"}
 				hideCountryFlag={false}
 				hideCountryCode={false}
-				searchBarStyle={styles.searchBarStyle}
 				backButtonImage={require("./res/ic_back_black.png")}
 				searchButtonImage={require("./res/ic_search.png")}
 				countryCode={"1"}
@@ -122,7 +121,6 @@ const styles = StyleSheet.create({
 | pickerTitleStyle         | -       | string                   | Customize picker title style                                   | Required          |
 | searchBarPlaceHolder     | -       | string                   | Change search bar placeholder                                  | Optional          |
 | searchBarStyle           | -       | object                   | Customize search bar text input style                          | Optional          |
-| searchBarContainerStyle  | -       | object                   | Customize search bar container style                           | Optional          |
 | containerStyle           | -       | object                   | Customize picker style                                         | Required          |
 | countryNameTextStyle     | -       | object                   | Customize country name text style(List View)                   | Optional          |
 | selectedCountryTextStyle | -       | object                   | Customize selected label text style                            | Optional          |
