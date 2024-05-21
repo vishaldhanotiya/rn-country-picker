@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
-import CountryPicker from "./src/CountryPicker/CountryPicker";
-import CountryJSON from "./src/CountryPicker/countries.json";
-// import CountryPicker from 'rn-country-picker'
-const App = () => {
-  const [countryCode, setCountryCode] = useState<string>("+91");
+import CountryPicker from "rn-country-picker";
 
-  const selectedValue = (value: string) => {
-    setCountryCode(value);
+const App = () => {
+  const [countryCode, setCountryCode] = useState<string>("91");
+
+  const selectedValue = (value) => {
+    setCountryCode(value?.callingCode);
   };
 
   return (
@@ -16,23 +14,10 @@ const App = () => {
       <Text style={styles.titleText}>React Native Country Picker</Text>
 
       <CountryPicker
-        disable={false}
         animationType={"slide"}
         language="en"
-        pickerContainerStyle={styles.pickerStyle}
-        pickerTitleStyle={styles.pickerTitleStyle}
-        dropDownImage={require("./res/ic_drop_down.png")}
-        selectedCountryTextStyle={styles.selectedCountryTextStyle}
-        countryNameTextStyle={styles.countryNameTextStyle}
-        pickerTitle={"Country Picker"}
-        searchBarPlaceHolder={"Search......"}
-        hideCountryFlag={false}
-        hideCountryCode={false}
-        countryId={"38"}
-        searchBarContainerStyle={styles.searchBarStyle}
-        backButtonImage={require("./res/ic_back_black.png")}
-        searchButtonImage={require("./res/ic_search.png")}
-        countryCode={"1"}
+        countryCode={countryCode}
+        selectedValue={selectedValue}
       />
     </View>
   );
@@ -59,8 +44,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   pickerStyle: {
-    height: 50,
-    width: 120,
+    height: 54,
+    width: 150,
     marginVertical: 10,
     borderColor: "#303030",
     alignItems: "center",
@@ -68,7 +53,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "white",
     borderRadius: 5,
-    borderWidth: 1.5,
+    borderWidth: 2,
     fontSize: 16,
     color: "#000",
   },
