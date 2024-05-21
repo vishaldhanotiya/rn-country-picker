@@ -1,38 +1,36 @@
-import { View, StyleSheet, TextInput, Image, I18nManager, Platform } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Image,
+  I18nManager,
+  Platform,
+} from "react-native";
 import React, { useState } from "react";
 
 const SearchBar = (props) => {
+  const search = props.searchIcon
+    ? props.searchIcon
+    : require("../../res/ic_search.png");
   const [text, setText] = useState("");
 
   return (
     <View style={[styles.searchBarStyle, props.searchBarContainerStyle]}>
-      <Image
-        resizeMode="center"
-        style={styles.imageStyle}
-        source={props.searchButtonImage}
-      />
+      <Image resizeMode="contain" style={styles.imageStyle} source={search} />
 
       {!props.hideSearchBar && (
         <TextInput
           style={styles.textInputStyle}
           onChangeText={props.searchByCountryNameCode}
           onChange={(event) => {
-            const {  text } = event.nativeEvent;
+            const { text } = event.nativeEvent;
             setText(text);
           }}
           placeholderTextColor={"#A9A9A9"}
-          placeholder={props.searchBarPlaceHolder}
+          placeholder={props.searchBarPlaceHolder ?? "Search"}
           keyboardType="default"
           returnKeyType={"done"}
           blurOnSubmit={true}
-        />
-      )}
-
-      {text && (
-        <Image
-          resizeMode="center"
-          style={styles.imageStyle}
-          source={props.closeButtonImage}
         />
       )}
     </View>
@@ -44,16 +42,17 @@ const styles = StyleSheet.create({
   containerStyle: {
     justifyContent: "center",
   },
-  textInputStyle: { 
+  textInputStyle: {
     flex: 1,
-    marginLeft:10
-   },
+    marginLeft: 10,
+    height: 45,
+  },
   searchBarStyle: {
     margin: 10,
-    padding:10,
+    padding: 10,
     flexDirection: "row",
     height: 45,
-    alignItems:"center",
+    alignItems: "center",
     shadowOpacity: 1.0,
     shadowRadius: 5,
     shadowOffset: {
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
       height: 1,
     },
     backgroundColor: "rgba(255,255,255,1)",
-    shadowColor: Platform.OS==='ios'?"rgba(0,0,0,0.3)":"rgba(0,0,0,1)",
+    shadowColor: Platform.OS === "ios" ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,1)",
     borderRadius: 10,
     elevation: 5,
   },

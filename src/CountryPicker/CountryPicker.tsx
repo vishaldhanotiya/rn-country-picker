@@ -18,33 +18,33 @@ import CountryListItem from "./CountryListItem";
 import CountryButton from "./CountryButton";
 
 const CountryPicker = (props: CountryPickerProps) => {
-  const [selectedCountry, setSelectedCountry] = useState<CountryJsonProps>();
   const [countryJson, setCountryJson] = useState<any[]>(CountryJSON);
   const [isModalVisible, toggleModal] = useState<boolean>(false);
-  const [selectedFlag, setSelectedFlag] = useState<boolean>(false);
 
   const searchByCountryNameCode = (searchText: string) => {
-    if (/^-{0,1}\d+$/.test(searchText)) {
+    if (/^-{0,1}\d+$/.test(searchText.trim())) {
       var filteredJson = CountryJSON.filter((item) => {
-        return item.callingCode.startsWith(searchText);
+        return item.callingCode.startsWith(searchText?.trim());
       });
     } else {
       var filteredJson = CountryJSON.filter((item) => {
         const itemData =
-          item.name[props.language]?.toUpperCase() || item.name[props.language]; // some lanaguage can't be uppercase e.g Arabic, Japenese
-        const queryText = searchText?.toUpperCase() || searchText;
+          item.name[props.language]?.toUpperCase() || item.name[props.language];
+        const queryText = searchText?.trim()?.toUpperCase() || searchText;
         return itemData?.includes(queryText);
       });
     }
-    setCountryJson([...filteredJson]);
+    if (searchText.length > 0) {
+      setCountryJson([...filteredJson]);
+    } else {
+      setCountryJson([...CountryJSON]);
+    }
   };
 
   const handleItemOnClick = (item: CountryJsonProps) => {
     toggleModal(false);
-    setSelectedFlag(true);
-    setSelectedCountry(item);
     setCountryJson(CountryJSON);
-    props.selectedValue && props.selectedValue(item.callingCode);
+    props.selectedValue && props.selectedValue(item);
   };
 
   const toggleModal1 = (value: boolean) => {
@@ -53,12 +53,7 @@ const CountryPicker = (props: CountryPickerProps) => {
 
   return (
     <View>
-      <CountryButton
-        {...props}
-        toggleModal1={toggleModal1}
-        selectedFlag={selectedFlag}
-        selectedCountry={selectedCountry}
-      />
+      <CountryButton {...props} toggleModal1={toggleModal1} />
 
       <Modal
         transparent
@@ -111,21 +106,6 @@ const CountryPicker = (props: CountryPickerProps) => {
 };
 export default CountryPicker;
 
-CountryPicker.defaultProps = {
-  disable: false,
-  animationType: "slide",
-  hideCountryFlag: false,
-  hideCountryCode: false,
-  dropDownImage: require("../../res/ic_drop_down.png"),
-  backButtonImage: require("../../res/ic_back_black.png"),
-  searchButtonImage: require("../../res/ic_search.png"),
-  closeButtonImage: require("../../res/close.png"),
-  countryCode: "91",
-  searchBarPlaceHolder: "Search...",
-  selectedValue: "",
-  pickerTitle: "",
-  language: "en",
-};
 export interface CountryJsonProps {
   currency: "string";
   callingCode: number;
@@ -150,27 +130,24 @@ export interface CountryJsonProps {
   };
 }
 export interface CountryPickerProps {
-  countryId: any;
+  countryId?: string;
   animationType?: "none" | "slide" | "fade" | undefined;
   searchBarContainerStyle?: ViewStyle;
   pickerContainerStyle?: ViewStyle;
-  pickerTitleStyle?: TextStyle;
   countryNameTextStyle?: TextStyle;
   selectedCountryTextStyle?: TextStyle;
-  dropDownImage?: ImageSourcePropType;
-  backButtonImage?: ImageSourcePropType;
-  searchButtonImage?: ImageSourcePropType;
-  dropDownImageStyle?: ImageStyle;
+  dropDownIcon?: ImageSourcePropType;
+  searchIcon?: ImageSourcePropType;
+  dropDownIconStyle?: ImageStyle;
   countryFlagStyle?: ImageStyle;
   countryCode?: string | any;
   hideCountryFlag?: boolean;
   hideCountryCode?: boolean;
   selectedFlag?: boolean;
   searchBarPlaceHolder?: string;
-  pickerTitle?: string;
   disable?: boolean;
   selectedValue?: Function;
-  language:
+  language?:
     | "en"
     | "cym"
     | "deu"
@@ -198,36 +175,22 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     bottom: -30,
   },
-  fullScreenContainer: {
-    width: "100%",
-    height: "100%",
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-    backgroundColor: "white",
-    paddingBottom: 30,
-    bottom: -30,
-  },
   safeAreaView: {
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(0,0,0,0.2)",
   },
-  onPressClose: { flex: 1 },
-  closePress: { alignItems: "center", padding: 10 },
-
+  onPressClose: {
+    flex: 1,
+  },
+  closePress: {
+    alignItems: "center",
+    padding: 10,
+  },
   selectedCountryTextStyle: {
     color: "#000",
     textAlign: "right",
   },
-  pickerTitleStyle: {
-    flex: 1,
-    fontSize: 16,
-    color: "#000",
-    alignSelf: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-
   countryNameTextStyle: {
     color: "#000",
     textAlign: I18nManager.isRTL ? "right" : "left",

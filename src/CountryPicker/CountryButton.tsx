@@ -1,4 +1,3 @@
-//import libraries
 import React from "react";
 import {
   View,
@@ -9,37 +8,40 @@ import {
   ImageStyle,
   TextStyle,
   ViewStyle,
+  ImageSourcePropType,
 } from "react-native";
 import CountryJSON from "./countries.json";
 
 interface CountryButtonProps {
-  countryId?: any;
+  countryId?: string;
   pickerContainerStyle?: ViewStyle;
   selectedCountryTextStyle?: TextStyle;
-  dropDownImageStyle?: ImageStyle;
+  dropDownIconStyle?: ImageStyle;
   countryFlagStyle?: ImageStyle;
-  dropDownImage?: any;
+  dropDownIcon?: ImageSourcePropType;
   countryCode?: string | any;
   hideCountryFlag?: boolean;
   hideCountryCode?: boolean;
   searchBarPlaceHolder?: string;
-  pickerTitle?: string;
   disable?: boolean;
   selectedValue?: Function;
   toggleModal1?: any;
-  selectedFlag?: any;
-  selectedCountry?: any;
 }
-// create a component
+
 const CountryButton = (props: CountryButtonProps) => {
+  const dropDown = props.dropDownIcon
+    ? props.dropDownIcon
+    : require("../../res/ic_drop_down.png");
+
   const filteredJson = CountryJSON.filter(function (item) {
-    return item.callingCode === props.countryCode;
+    return item.callingCode === props.countryCode?.replaceAll("+", "");
   });
+
   const selectedFlag = (filteredJson) => {
     if (filteredJson.length === 1) {
       return filteredJson[0]?.flag;
     } else {
-      return filteredJson.filter((item) => item.id == props.countryId)[0].flag;
+      return filteredJson.filter((item) => item.id == props.countryId)[0]?.flag;
     }
   };
 
@@ -52,12 +54,10 @@ const CountryButton = (props: CountryButtonProps) => {
       <View style={[styles.selectedCountryView, props.pickerContainerStyle]}>
         {!props.hideCountryFlag && (
           <Image
-            source={{
-              uri: props?.selectedFlag
-                ? props?.selectedCountry?.flag
-                : selectedFlag(filteredJson),
-            }}
             style={[styles.countryFlagStyle, props.countryFlagStyle]}
+            source={{
+              uri: selectedFlag(filteredJson),
+            }}
           />
         )}
         {!props.hideCountryCode && (
@@ -67,22 +67,20 @@ const CountryButton = (props: CountryButtonProps) => {
               props.selectedCountryTextStyle,
             ]}
           >
-            {props.selectedFlag
-              ? "+" + props.selectedCountry?.callingCode
-              : "+" + props.countryCode}
+            {` +${props.countryCode?.replaceAll("+", "")}`}
           </Text>
         )}
 
         <Image
-          source={props.dropDownImage}
-          style={[styles.dropDownImage, props.dropDownImageStyle]}
+          resizeMode="contain"
+          source={dropDown}
+          style={[styles.dropDownIcon, props.dropDownIconStyle]}
         />
       </View>
     </Pressable>
   );
 };
 
-//make this component available to the app
 export default CountryButton;
 
 const styles = StyleSheet.create({
@@ -100,15 +98,23 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 2,
     borderRadius: 5,
+    height: 54,
+    width: 120,
+    marginVertical: 10,
+    borderColor: "#303030",
+    marginHorizontal: 10,
+    backgroundColor: "white",
+    fontSize: 16,
+    color: "#000",
   },
   countryFlagStyle: {
     width: 35,
     height: 25,
     borderRadius: 3,
   },
-  dropDownImage: {
-    width: 10,
-    height: 10,
+  dropDownIcon: {
+    width: 15,
+    height: 15,
     marginHorizontal: 5,
   },
 });

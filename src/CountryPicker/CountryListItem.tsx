@@ -1,4 +1,3 @@
-//import liraries
 import React from "react";
 import {
   View,
@@ -9,7 +8,6 @@ import {
   I18nManager,
 } from "react-native";
 
-// create a component
 const CountryListItem = (props) => {
   return (
     <View>
@@ -25,7 +23,7 @@ const CountryListItem = (props) => {
             <Text
               style={[styles.countryNameTextStyle, props.countryNameTextStyle]}
             >
-              {props.item.name[props.language]}
+              {props.item.name[props.language ?? "en"]}
               {`(+${props.item.callingCode})`}
             </Text>
           </View>
@@ -36,7 +34,6 @@ const CountryListItem = (props) => {
   );
 };
 
-//make this component available to the app
 export default CountryListItem;
 
 const styles = StyleSheet.create({
@@ -57,7 +54,7 @@ const styles = StyleSheet.create({
   },
   countryNameTextStyle: {
     color: "#000",
-    marginLeft:10,
+    marginLeft: 10,
     textAlign: I18nManager.isRTL ? "right" : "left",
   },
   countryFlagStyle: {
