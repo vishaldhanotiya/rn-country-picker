@@ -49,6 +49,7 @@ const CountryPicker = (props: CountryPickerProps) => {
 
   const toggleModal1 = (value: boolean) => {
     toggleModal(value);
+    setCountryJson(CountryJSON);
   };
 
   return (
