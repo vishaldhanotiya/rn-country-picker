@@ -9,10 +9,11 @@
 
 ## Important Note
  While selecting the USA It showed the wrong flag icon because both countries have the same country code so we added a new prop that is the `countryId` field. 
- For USA countryId is 231
- For Canada, countryId is 38
- For Anguilla, countryId is 7
- For Antarctica, countryId is 8
+
+1. For USA countryId is 231
+2. For Canada, countryId is 38
+3. For Anguilla, countryId is 7
+4. For Antarctica, countryId is 8
 
 ## Features
 
