@@ -9,15 +9,17 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~3.1.3",
     "@types/react": "~18.2.45",
     "expo": "~50.0.17",
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-native": "0.73.6",
     "react-native-reanimated": "^3.10.0",
-    "typescript": "^5.3.0",
-    "rn-country-picker":"../rn-country-picker-1.0.5.tgz"
-
+    "react-native-web": "~0.19.6",
+    "rn-country-picker": "1.0.8",
+    "typescript": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

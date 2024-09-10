@@ -16,6 +16,8 @@ const App = () => {
       <CountryPicker
         animationType={"slide"}
         language="en"
+        searchBarPlaceholderTextColor={"#ff0"}
+        searchInputStyle={{ marginTop: 10 }}
         countryCode={countryCode}
         selectedValue={selectedValue}
       />
