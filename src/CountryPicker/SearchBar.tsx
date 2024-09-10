@@ -12,21 +12,22 @@ const SearchBar = (props) => {
   const search = props.searchIcon
     ? props.searchIcon
     : require("../../res/ic_search.png");
-  const [text, setText] = useState("");
-
+  const [_text, setText] = useState("");
   return (
     <View style={[styles.searchBarStyle, props.searchBarContainerStyle]}>
       <Image resizeMode="contain" style={styles.imageStyle} source={search} />
 
       {!props.hideSearchBar && (
         <TextInput
-          style={styles.textInputStyle}
+          style={[styles.textInputStyle, props.searchInputStyle]}
           onChangeText={props.searchByCountryNameCode}
           onChange={(event) => {
             const { text } = event.nativeEvent;
             setText(text);
           }}
-          placeholderTextColor={"#A9A9A9"}
+          placeholderTextColor={
+            props.searchBarPlaceholderTextColor ?? "#A9A9A9"
+          }
           placeholder={props.searchBarPlaceHolder ?? "Search"}
           keyboardType="default"
           returnKeyType={"done"}

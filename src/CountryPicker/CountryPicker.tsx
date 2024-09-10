@@ -136,6 +136,8 @@ export interface CountryPickerProps {
   pickerContainerStyle?: ViewStyle;
   countryNameTextStyle?: TextStyle;
   selectedCountryTextStyle?: TextStyle;
+  searchInputStyle?: ViewStyle;
+  searchBarPlaceholderTextColor?: string;
   dropDownIcon?: ImageSourcePropType;
   searchIcon?: ImageSourcePropType;
   dropDownIconStyle?: ImageStyle;

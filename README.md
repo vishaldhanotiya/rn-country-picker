@@ -78,25 +78,27 @@ const styles = StyleSheet.create({
 
 ## Properties
 
-| Prop                     | Default | Type                     | Description                                                    | Required/Optional |
-| ------------------------ | ------- | ------------------------ | -------------------------------------------------------------- | ----------------- |
-| countryId                | -       | string                   | Default and selected country Id                                | Required          |
-| countryCode              | -       | string                   | Default and selected country code                              | Required          |
-| searchBarPlaceHolder     | -       | string                   | Change search bar placeholder                                  | Optional          |
-| searchBarStyle           | -       | object                   | Customize search bar text input style                          | Optional          |
-| pickerContainerStyle     | -       | object                   | Customize picker style                                         | Required          |
-| searchBarContainerStyle  | -       | object                   | Customize search bar style                                     | Optional          |
-| countryNameTextStyle     | -       | object                   | Customize country name text style(List View)                   | Optional          |
-| selectedCountryTextStyle | -       | object                   | Customize selected label text style                            | Optional          |
-| dropDownIconStyle        | -       | object                   | Change dropdown arrow style                                    | Optional          |
-| countryFlagStyle         | -       | object                   | Customize flag style                                           | Optional          |
-| searchIcon               | -       | png/jpg                  | Add custom search Icon                                         | Optional          |
-| dropDownIcon             | -       | png/jpg                  | Add custom drop down icon                                      | Optional          |
-| selectedValue            | -       | function                 | callback function received value from list selection           | Required          |
-| animationType            | -       | string [slide,none,fade] | Change Modal Animation                                         | Optional          |
-| hideCountryCode          | -       | bool                     | hide country code from component only show flag                | Optional          |
-| hideCountryFlag          | -       | bool                     | hide country flag from component                               | Optional          |
-| disable                  | -       | bool                     | Disable picker                                                 | Optional          |
-| language                 | en      | string                   | Change the language of list                                    | required          |
+| Prop                          | Default | Type                     | Description                                                    | Required/Optional |
+| ----------------------------- | ------- | ------------------------ | -------------------------------------------------------------- | ----------------- |
+| countryId                     | -       | string                   | Default and selected country Id                                | Required          |
+| countryCode                   | -       | string                   | Default and selected country code                              | Required          |
+| searchBarPlaceHolder          | -       | string                   | Change search bar placeholder                                  | Optional          |
+| searchBarStyle                | -       | object                   | Customize search bar text input style                          | Optional          |
+| pickerContainerStyle          | -       | object                   | Customize picker style                                         | Required          |
+| searchBarContainerStyle.      | -       | object                   | Customize search bar style                                     | Optional          |
+| searchInputStyle              | -       | object                   | Customize search bar Text Input style                          | Optional          |
+| searchBarPlaceholderTextColor | -       | object                   | Customize search bar placeholder color                         | Optional          |
+| countryNameTextStyle          | -       | object                   | Customize country name text style(List View)                   | Optional          |
+| selectedCountryTextStyle      | -       | object                   | Customize selected label text style                            | Optional          |
+| dropDownIconStyle             | -       | object                   | Change dropdown arrow style                                    | Optional          |
+| countryFlagStyle              | -       | object                   | Customize flag style                                           | Optional          |
+| searchIcon                    | -       | png/jpg                  | Add custom search Icon                                         | Optional          |
+| dropDownIcon                  | -       | png/jpg                  | Add custom drop down icon                                      | Optional          |
+| selectedValue                 | -       | function                 | callback function received value from list selection           | Required          |
+| animationType                 | -       | string [slide,none,fade] | Change Modal Animation                                         | Optional          |
+| hideCountryCode               | -       | bool                     | hide country code from component only show flag                | Optional          |
+| hideCountryFlag               | -       | bool                     | hide country flag from component                               | Optional          |
+| disable                       | -       | bool                     | Disable picker                                                 | Optional          |
+| language                      | en      | string                   | Change the language of list                                    | required          |
 
 
